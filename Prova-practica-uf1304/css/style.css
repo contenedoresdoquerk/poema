@@ -1,0 +1,150 @@
+/* Paleta de colores */
+:root {
+    --color1: #46294a;
+    --color2: hsla(78, 67%, 26%, 0.877);
+    --color3: #e07767;
+    --color4: #e0ae67;
+    --color5: #d4e067;
+}
+
+/* Fondo general */
+body {
+    background: linear-gradient(135deg, var(--color1) 0%, var(--color2) 100%);
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.container {
+    background: #fff;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(70, 41, 74, 0.15);
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    color: var(--color1);
+    margin-bottom: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Etiquetas do proyecto*/
+label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 6px;
+    color: var(--color2);
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--color4);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    background: #faf8fa;
+    transition: border 0.2s;
+    color: var(--color1);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--color2);
+    outline: none;
+}
+
+/* Grupos de radio */
+.radio-group,
+.range-group {
+    margin-bottom: 10px;
+}
+
+.radio-group label,
+.range-group label {
+    display: inline-block;
+    margin-right: 18px;
+    font-weight: normal;
+    color: var(--color3);
+}
+
+input[type="radio"] {
+    accent-color: var(--color2);
+}
+
+/* Botones */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+}
+
+button {
+    background: var(--color2);
+    color: #fff;
+    border: none;
+    padding: 10px 26px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 1px 4px rgba(173, 76, 107, 0.08);
+}
+
+button[type="reset"] {
+    background: var(--color4);
+    color: var(--color1);
+}
+
+button:hover {
+    background: var(--color3);
+    transform: translateY(-2px) scale(1.03);
+}
+
+button[type="reset"]:hover {
+    background: var(--color5);
+}
+
+/* Textarea */
+textarea {
+    resize: vertical;
+    min-height: 60px;
+    max-height: 140px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 18px 8px;
+    }
+
+    h1 {
+        font-size: 1.3em;
+    }
+}
+
+
+@media (min-width: 600px) {}
+
+
+
+@media (max-width) {
+
+
+    
+}
