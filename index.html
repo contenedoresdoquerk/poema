@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Validación de Registro y Sesión</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>1. Validación de Registro</h2>
+  <p>El usuario debe ser mayor de edad <strong>y</strong> tener un email válido.</p>
+
+  <form id="registrationForm" onsubmit="return checkRegistration()">
+    <label for="age">Edad:</label>
+    <input type="number" id="age" name="age" min="0" value="18" required />
+
+    <label for="email">Email válido:</label>
+    <input type="email" id="email" name="email" required />
+
+    <br /><br />
+     <button type="submit">Verificar Acceso</button>
+  </form>
+
+  <div id="result" class="result"></div>
+
+  <hr />
+
+  <h2>2. Alerta de Sesión</h2>
+  <p>Mostrar alerta si el usuario no está logueado:</p>
+
+  <label for="isLoggedIn">¿Está logueado?</label>
+  <select id="isLoggedIn">
+    <option value="false">No</option>
+    <option value="true">Sí</option>
+  </select>
+  <button onclick="checkLogin()">Verificar Sesión</button>
+
+  <div id="loginResult" class="result"></div>
+
+  <hr />
+
+  <h2>3. Descuento Oficial Combinado</h2>
+  <p>Descuento para jóvenes (edad &lt; 25) o socios con cupón.</p>
+
+  <form onsubmit="return checkDiscount()">
+    <label for="discountAge">Edad:</label>
+    <input type="number" id="discountAge" name="discountAge" min="0" value="22" required />
+
+    <label for="isMember">¿Es socio?</label>
+    <select id="isMember">
+      <option value="false">No</option>
+      <option value="true">Sí</option>
+    </select>
+
+    <label for="hasCoupon">¿Tiene cupón?</label>
+    <select id="hasCoupon">
+      <option value="false">No</option>
+      <option value="true">Sí</option>
+    </select>
+
+    <br /><br />
+    <button type="submit">Aplicar Descuento</button>
+  </form>
+
+  <div id="discountResult" class="result"></div>
+
+  <script>
+    function checkRegistration() {
+      const age = parseInt(document.getElementById('age').value, 10);
+      const email = document.getElementById('email').value;
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(age) || age < 18) {
+        resultDiv.textContent = "Debes ser mayor de edad para registrarte.";
+        resultDiv.style.color = "red";
+        return false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        resultDiv.textContent = "Por favor, ingresa un email válido.";
+        resultDiv.style.color = "red";
+        return false;
+      }
+
+      resultDiv.textContent = "Registro válido. ¡Bienvenido!";
+      resultDiv.style.color = "green";
+      return false;
+    }
+
+    function checkLogin() {
+      const isLoggedIn = document.getElementById('isLoggedIn').value === "true";
+      const resultElement = document.getElementById('loginResult');
+
+      if (!isLoggedIn) {
+        alert("Alerta: Por favor, inicia sesión.");
+        resultElement.textContent = "No tienes permiso.";
+        resultElement.style.color = "red";
+      } else {
+        resultElement.textContent = "Tienes permiso.";
+        resultElement.style.color = "green";
+      }
+    }
+
+    function checkDiscount() {
+      const age = parseInt(document.getElementById('discountAge').value, 10);
+      const isMember = document.getElementById('isMember').value === "true";
+      const hasCoupon = document.getElementById('hasCoupon').value === "true";
+      const resultDiv = document.getElementById('discountResult');
+
+      if (isNaN(age)) {
+        resultDiv.textContent = "Edad inválida.";
+        resultDiv.style.color = "red";
+        return false;
+      }
+
+      if (age < 25 || (isMember && hasCoupon)) {
+        resultDiv.textContent = "¡Descuento aplicado!";
+        resultDiv.style.color = "green";
+      } else {
+        resultDiv.textContent = "No cumples los requisitos para descuento.";
+        resultDiv.style.color = "red";
+      }
+
+      return false;
+    }
+  </script>
+</body>
+</html>
